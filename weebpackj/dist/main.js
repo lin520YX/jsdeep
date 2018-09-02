@@ -1,22 +1,22 @@
 
 (function (modules) { 
 
-  function __webpack_require__(moduleId) {
+  function require(moduleId) {
 
 
-    var module = installedModules[moduleId] = {
+    var module  = {
       exports: {}
     };
-    modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+    modules[moduleId].call(module.exports, module, module.exports,require);
 
     return module.exports;
   }
-  return __webpack_require__("./src/index.js");
+  return require("./src/index.js");
 })
 
   ({
     "./src/index.js":
-      (function (module, exports, __webpack_require__) {
+      (function (module, exports, require) {
         eval(`let result = require('src/1.js');
 require('src/index.css')`);
       })
@@ -30,7 +30,7 @@ require('src/index.css')`);
         (function (module, exports) {
         eval(`
         let style = document.createElement('style');
-        style.innerText="a{\n    background:red;\n}";
+        style.innerText="a{    background:red;}";
         document.head.appendChild(style);
     `);
         })

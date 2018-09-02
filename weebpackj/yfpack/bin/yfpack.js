@@ -29,22 +29,22 @@ let ejs = require('ejs');
 let template=`
 (function (modules) { 
 
-  function __webpack_require__(moduleId) {
+  function require(moduleId) {
 
 
-    var module = installedModules[moduleId] = {
+    var module  = {
       exports: {}
     };
-    modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+    modules[moduleId].call(module.exports, module, module.exports,require);
 
     return module.exports;
   }
-  return __webpack_require__("<%-entry%>");
+  return require("<%-entry%>");
 })
 
   ({
     "<%-entry%>":
-      (function (module, exports, __webpack_require__) {
+      (function (module, exports, require) {
         eval(\`<%-script%>\`);
       })
       <%for(let i=0;i<modules.length;i++){
