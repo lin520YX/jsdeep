@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- mvvm 双向数据绑定 angular 脏检测 vue 数据劫持 发布订阅模式 -->
+    <!-- Object.defineProperty -->
+    <script>
+        let obj ={};
+        Object.defineProperty(obj,'school',{
+            configurable:true,
+            enumerable:true,
+            get(){
+                // 获取obj值的时候会调用
+                return 'sbcj'
+
+            },
+            set(val){
+            console.log(val)
+            }
+        })
+      
+    </script>
+</body>
+</html>
