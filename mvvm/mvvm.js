@@ -9,10 +9,11 @@ function Observe(data){
         observe(val)
         Object.defineProperty(data,key,{
             enumerable:true,
+            
             get(){
                 return val;
             },
-            
+
             set(newVal){
                 if(newVal===val){
                     return;
