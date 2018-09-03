@@ -12,6 +12,7 @@ function Observe(data){
             get(){
                 return val;
             },
+            
             set(newVal){
                 if(newVal===val){
                     return;
