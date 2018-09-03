@@ -7,10 +7,9 @@ let script = fs.readFileSync(entry,'utf8');
 let path = require('path');
 let modules=[];
 let styleLoader =function(source){
-    console.log(source)
     return `
         let style = document.createElement('style');
-        style.innerText=${JSON.stringify(source).replace(/\\r\\n/g,'')};
+        style.innerText=${JSON.stringify(source).replace(/\\r\\n/g,'').replace(/\\n/g,'')};
         document.head.appendChild(style);
     `
 }
