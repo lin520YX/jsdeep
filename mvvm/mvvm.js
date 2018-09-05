@@ -2,6 +2,18 @@ function Yf(options={}){
         this.$options = option;
         var data =this._data=this.$options.data
         observe(data);
+        // 代理
+        for(let key in data){
+                Object.defineProperty(this,key,{
+                    enumerable:true,
+                    get(){
+                        return this._data[key]
+                    },
+                    set(newVal){
+                        this._data[key]= newVal
+                    }
+                })
+        }
 }
 function Observe(data){
     for(let key in data){
@@ -9,7 +21,7 @@ function Observe(data){
         observe(val)
         Object.defineProperty(data,key,{
             enumerable:true,
-            
+
             get(){
                 return val;
             },
@@ -17,9 +29,9 @@ function Observe(data){
             set(newVal){
                 if(newVal===val){
                     return;
-                }else{
-                    val = newVal
                 }
+                    val = newVal
+                    observe(val)
             }
         });
     }
