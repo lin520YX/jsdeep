@@ -24,20 +24,20 @@ function Compile(el, vm) {
         fragment.appendChild(child);
     }
     replace(fragment)
-    function replace(fragment){
+    function replace(fragment) {
         Array.from(fragment.childNodes).forEach((item, index) => {
             let _test = item.textContent;
-            let reg = /\{\{(.*)\}\}/ ;
-            if(item.nodeType == 3 && reg.test(_test)){
+            let reg = /\{\{(.*)\}\}/;
+            if (item.nodeType == 3 && reg.test(_test)) {
                 let arr = RegExp.$1.split('.');
                 console.log(arr)
-                let val =vm;
-                arr.forEach(key=>{
+                let val = vm;
+                arr.forEach(key => {
                     val = val[key];
                 })
                 item.textContent = _test.replace(/\{\{(.*)\}\}/, val)
             }
-            if(item.childNodes){
+            if (item.childNodes) {
                 replace(item)
             }
         })
