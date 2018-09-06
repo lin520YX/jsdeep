@@ -8,13 +8,14 @@
 </head>
 <body>
     <div id="app">
-
+        <p>{{a.a}}</p>
+        <div>{{b}}</div>
     </div>
     <script src="mvvm.js"></script>
     <script>
             let vue  = new Yf({
                 el:'#app',
-                data:{a:1}//Object.defineProperty(obj,'a',1);
+                data:{a:{a:2},b:"b"}//Object.defineProperty(obj,'a',1);
             })
 
     </script>
