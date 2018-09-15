@@ -58,13 +58,11 @@ function resolvePromise(promise2, x, resolve, reject) {
 }
 Promise.prototype.then = function (onfulfilled, onrejected) {
     let self = this;
-    console.log(self.status)
     onfulfilled=typeof onfulfilled == 'function'?onfulfilled:val=>val;
     onrejected=typeof onrejected == 'function'?onrejected:err=>{
         throw err
     };
     // 需要判断onfulfilled/onrejected的执行结果 和promise2的关系
-
     let promise2 = new Promise((resolve, reject) => {
         if (self.status === 'resolved') {
             setTimeout(() => {
@@ -81,7 +79,6 @@ Promise.prototype.then = function (onfulfilled, onrejected) {
                 let x = onrejected(self.reason)
                 resolvePromise(promise2, x, resolve, reject);
             }, 0)
-
         }
         if (self.status === 'pending') {
             setTimeout(() => {
