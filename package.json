@@ -1,0 +1,23 @@
+{
+  "name": "jsdeep",
+  "version": "1.0.0",
+  "description": "",
+  "main": "3.case.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lin520YX/jsdeep.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lin520YX/jsdeep/issues"
+  },
+  "homepage": "https://github.com/lin520YX/jsdeep#readme",
+  "dependencies": {
+    "bluebird": "^3.5.2"
+  }
+}
