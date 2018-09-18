@@ -60,56 +60,56 @@ function resolvePromise(promise2, x, resolve, reject) {
 }
 Promise.prototype.then = function (onfulfilled, onrejected) {
 
-    
+
     onfulfilled = typeof onfulfilled == 'function' ? onfulfilled : val => val;
     onrejected = typeof onrejected === 'function' ? onrejected : err => {
-      throw err;
+        throw err;
     }
     let self = this;
     // 需要判断onfulfilled/onrejected的执行结果 和promise2的关系
     let promise2 = new Promise((resolve, reject) => {
         if (self.status === 'resolved') {
             setTimeout(() => { // 目的是为了实现异步
-              try {
-                let x = onfulfilled(self.value);
-                resolvePromise(promise2, x, resolve, reject);
-              } catch (e) {
-                reject(e);
-              }
+                try {
+                    let x = onfulfilled(self.value);
+                    resolvePromise(promise2, x, resolve, reject);
+                } catch (e) {
+                    reject(e);
+                }
             }, 0);
-          }
-          if (self.status === 'rejected') {
+        }
+        if (self.status === 'rejected') {
             setTimeout(() => {
-              try {
-                let x = onrejected(self.reason);
-                resolvePromise(promise2, x, resolve, reject); // 解析x 和 promise2的关系
-              } catch (e) {
-                reject(e);
-              }
+                try {
+                    let x = onrejected(self.reason);
+                    resolvePromise(promise2, x, resolve, reject); // 解析x 和 promise2的关系
+                } catch (e) {
+                    reject(e);
+                }
             }, 0);
-          }
+        }
         if (self.status === 'pending') {
             self.onResolved.push(function () {
                 setTimeout(() => {
-                  try {
-                    let x = onfulfilled(self.value);
-                    resolvePromise(promise2, x, resolve, reject);
-                  } catch (e) {
-                    reject(e);
-                  }
+                    try {
+                        let x = onfulfilled(self.value);
+                        resolvePromise(promise2, x, resolve, reject);
+                    } catch (e) {
+                        reject(e);
+                    }
                 }, 0);
-              });
-              self.onRejected.push(function () {
+            });
+            self.onRejected.push(function () {
                 setTimeout(() => {
-                  try {
-                    let x = onrejected(self.reason);
-                    resolvePromise(promise2, x, resolve, reject);
-                  } catch (e) {
-                    reject(e);
-                  }
+                    try {
+                        let x = onrejected(self.reason);
+                        resolvePromise(promise2, x, resolve, reject);
+                    } catch (e) {
+                        reject(e);
+                    }
                 }, 0);
-              });
-            }
+            });
+        }
     })
     return promise2
 }
@@ -133,5 +133,31 @@ Promise.defer = Promise.deferred = function () {
         dfd.reject = reject;
     })
     return dfd;
+}
+Promise.all = function (promises) {
+    return new Promise((resolve, reject) => {
+        let results = [];
+        let i = 0;
+        function processData(index, data) {
+            results[index] = data;
+            if (++i === promises.length) {
+                resolve(results)
+            }
+        }
+        for (let i = 0; i < promises.length; i++) {
+            let p = promises[i];
+            p.then((data) => {
+                processData(i, data);
+            }, reject)
+        }
+    })
+}
+Promise.race=function(promises){
+    return new Promise((resolve,reject)=>{
+        for (let i = 0; i < promises.length; i++) {
+            let p = promises[i];
+            p.then(resolve, reject)
+        }
+    })
 }
 module.exports = Promise

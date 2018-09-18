@@ -31,3 +31,11 @@ promisifyAll(fs);
 fs.readFileAsync('./age.txt','utf8').then(data=>{
     console.log(data)
 })
+
+
+Promise.all([]).then(data=>{
+
+},err=>{
+    
+});
+// 按照数组的结果放到成功的回调里面，只有全部成功才算成功
