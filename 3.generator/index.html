@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #box{
+        position: relative;
+    }
+    #box div{
+        width: 100px;
+        height: 100px;
+        background: red;
+        position: absolute;
+        top:0;
+        border-radius: 50%;
+    }
+    #box div:nth-child(1){
+        top:0;
+    }
+    #box div:nth-child(2){
+            top:120px;
+    }
+    #box div:nth-child(3){
+        top:240px;
+    }
+</style>
+<body>
+    <div id="box">
+            <div></div>
+            <div></div>
+            <div></div>
+    </div>
+</body>
+<script>
+   let box =document.getElementById('box');
+   let balls= box.querySelectorAll('div');
+    function move(ele,distance){
+        return new Promise((resolve,reject)=>{
+            let pos = 0;
+            let timer = setInterval(()=>{
+                pos+=5;
+                if(pos>distance){
+                    clearInterval(timer);
+                    resolve()
+                    timer=null;
+                }else{
+                    ele.style.left=pos+'px';
+                }
+            },13)
+        })
+    }
+
+   async function m(){
+        await move(balls[0],500);
+        await move(balls[1],300); 
+        await move(balls[2],100);
+    }
+    m()
+    // function *m(){
+    //     yield move(balls[0],500);
+    //     yield move(balls[1],300); 
+    //     yield move(balls[2],100);
+    // }
+    // function co(it){
+    //     return new Promise((resolve,reject)=>{
+    //         function next(){
+    //             let {value,done}=it.next();
+    //             if(!done){
+    //                 value.then(data=>{
+    //                     next(data)
+    //                 },reject)
+    //             }else{
+    //                 resolve(value)
+    //             }
+    //         }
+    //         next()
+    //     })
+    // }
+    // co(m())
+
+
+    // move(balls[0],500).then(data=>{
+    //     return  move(balls[1],300)
+    // })
+    // .then(data=>{
+    //     return  move(balls[2],100)
+    // })
+
+</script>
+</html>
