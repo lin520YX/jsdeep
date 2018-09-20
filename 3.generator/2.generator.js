@@ -16,3 +16,6 @@ do{
 // it.next()
 // it.next()
 // it.next()
+
+
+//promise
