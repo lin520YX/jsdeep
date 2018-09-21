@@ -13,8 +13,17 @@ Array.prototype.myReduce=function(callback,prev){
     }
     return prev;
 }
-let a=arr.myReduce((prev,next,currentIndex,arr)=>{
-    console.log(currentIndex)
-    return prev+next
-})
-console.log(a)
+// let a=arr.myReduce((prev,next,currentIndex,arr)=>{
+//     console.log(currentIndex)
+//     return prev+next
+// })
+// console.log(a)
+
+// filter true留下 false丢掉
+
+// for(let item of Object.values({a:1,b:2,c:3}))console.log(item)
+
+// Symbol number string boolean null undefined object
+
+let s=Symbol.for('zzz');//永远唯一 作为常量
+console.log(Symbol.keyFor(s))
