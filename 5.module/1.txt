@@ -1,0 +1,14 @@
+Module._load //模块加载
+Module._resolveFilename 模块解析文件名 绝对路劲
+Module._cache 模块缓存 多次require 依次走
+new Module  没有缓存就创建这个模块exports属性
+方便取
+
+尝试加载模块
+Module._extensions 模块扩展名
+Module._compile 编译
+
+如果是js文件就读取内容（加上闭包）
+runInthisContext
+运行js
+把结果返回
