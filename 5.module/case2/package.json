@@ -11,5 +11,12 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "mime": "^2.3.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0"
+  }
 }
