@@ -63,13 +63,14 @@ console.log(global)
 
 // webpackdefineplugin
 
+// 虚拟机export NODE_ENV=hello && node 1.start.js
 // cross_env
-console.log(process.env.NODE_ENV)
+// console.log(process.env.NODE_ENV)
 
-let url;
-if(process.env.NODE_ENV==='production'){
-    url='localhost:3000';
-}else{
-    url='123';
-}
-console.log(123)
+// let url;
+// if(process.env.NODE_ENV==='production'){
+//     url='localhost:3000';
+// }else{
+//     url='123';
+// }
+// console.log(123)

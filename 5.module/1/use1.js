@@ -15,7 +15,7 @@ Module._load = function (p) {
     let filename = Module._resolveFilename(p)
     let cache = Module._cache[filename]
     if (cache) {
-
+        return cache.exports
     }
     let module = new Module(filename)
     Module._cache[filename] = module;
@@ -36,7 +36,7 @@ Module._extensions = {
         let content= fs.readFileSync(module.id, 'utf8');
         let funStr = Module.warp(content);
         let fn=vm.runInThisContext(funStr);
-        fn.call(module.exports,module.exports,req,module)
+        fn.call(module.exports,module.exports,req,module); //exports = {}
     },
     '.json': function (module) {
         module.exports = fs.readFileSync(module.id, 'utf8')
