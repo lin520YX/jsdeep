@@ -20,3 +20,4 @@ let fs = require('fs');
 // 3） 继承 儿子继承父亲上的原型方法
 // util.inherits(childrenConstructor,parentConstructor);
 // Object.create Object.setPrototypeof(children.Prototype,parentPrototype)
+
