@@ -5,3 +5,7 @@
 // 1，通过长度声明
 
 let buffer = Buffer.alloc(5);// node 中数字单位都是指代 字节数
+
+// 编码产生的问题
+
+let 
